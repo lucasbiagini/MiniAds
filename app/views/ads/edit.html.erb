@@ -1,0 +1,17 @@
+<h1>Editing Ad #<%= @ad.id %></h1>
+
+<%= form_for :ad, method: :patch, url: ad_path(@ad) do |f| %>
+
+	<p>
+		<div class="field form-group">
+			<%= f.label :budget %><br>
+			<%= f.text_field :budget %>
+		</div>
+	</p>
+
+	<p>
+		<%= f.submit 'Update Ad', :class => 'btn btn-success' %>
+	</p>
+
+
+<% end %>
