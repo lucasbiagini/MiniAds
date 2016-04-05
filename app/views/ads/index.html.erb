@@ -15,11 +15,11 @@
 
 	$(document).ready(function(){
 		$("li").on("click", function(){
-			var $li = $(this);
 			var targetPage = "#page-" + curr;
 			$(targetPage).hide();
+
+			var $li = $(this);
 			var id = $li.attr("id");
-			
 			if (id === "next")
 			{
 				if (curr > 1) curr = curr - 1;
@@ -45,9 +45,7 @@
 <%= link_to 'Add new Ad', new_ad_path, class: 'btn btn-success' %><br>
 </p>
 
-<% currIndex = 0 %>
 <% adIndex = 0 %>
-<% prevAdIndex = 0 %>
 <% openDiv = false %>
 <% closeDiv = false %>
 
@@ -109,11 +107,7 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <!--<li><a href="#page-1">1</a></li>
-    <li><a href="#page-2">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>-->
+
     <li id="prev">
       <a href="#page-2" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
