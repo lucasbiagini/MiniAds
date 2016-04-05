@@ -1,5 +1,6 @@
 class Ad < ActiveRecord::Base
-
+	has_many :creatives
+	
 	validates	:budget, presence: true
 	validates	:budget, :numericality => {:greater_than => 0}
 
