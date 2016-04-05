@@ -15,14 +15,12 @@
 	<% end %>
 
 	<p>
-		<div class="field form-group">
-			<%= f.label :budget %><br>
-			<%= f.text_field :budget%>
-		</div>
+		<%= f.label :budget %><br>
+		<%= f.text_field :budget, class: 'form-control'%>
 	</p>
 
 	<p>
-		<%= f.submit 'submit', :class => 'btn btn-success' %>
+		<%= f.submit 'Add Ad', :class => 'btn btn-success' %>
 	</p>
 
 <% end %>

@@ -3,10 +3,8 @@
 <%= form_for :ad, method: :patch, url: ad_path(@ad) do |f| %>
 
 	<p>
-		<div class="field form-group">
-			<%= f.label :budget %><br>
-			<%= f.text_field :budget %>
-		</div>
+		<%= f.label :budget %><br>
+		<%= f.text_field :budget, class: 'form-control' %>
 	</p>
 
 	<p>
@@ -15,3 +13,5 @@
 
 
 <% end %>
+
+<%= link_to 'Cancel', ads_path, class: 'btn btn-danger' %>
