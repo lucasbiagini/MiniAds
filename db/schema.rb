@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405113706) do
+ActiveRecord::Schema.define(version: 20160407054729) do
 
   create_table "ads", force: :cascade do |t|
     t.float    "budget"
@@ -28,5 +28,15 @@ ActiveRecord::Schema.define(version: 20160405113706) do
   end
 
   add_index "creatives", ["ad_id"], name: "index_creatives_on_ad_id"
+
+  create_table "targetings", force: :cascade do |t|
+    t.string   "places"
+    t.string   "gender"
+    t.integer  "ad_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "targetings", ["ad_id"], name: "index_targetings_on_ad_id"
 
 end
