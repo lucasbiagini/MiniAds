@@ -19,6 +19,17 @@
 	<p>
 		<%= f.label :budget %><br>
 		<%= f.text_field :budget, class: 'form-control' %>
+
+	</p>
+
+	<p>
+		<%= f.fields_for :creatives do |creative| %>
+			<%= render 'creative_fields', f: creative %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Creative', f, :creatives, :class => 'btn btn-success' %>
+		</div>
+
 	</p>
 
 	<p>
