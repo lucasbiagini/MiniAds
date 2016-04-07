@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :ads do
     resources :creatives
-    resources :targetings
+    resources :targetings do
+      resources :places
+    end
   end
 
 
