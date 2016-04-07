@@ -1,6 +1,6 @@
 <h1>Editing Ad #<%= @ad.id %></h1>
 
-<%= form_for :ad, method: :patch, url: ad_path(@ad) do |f| %>
+<%= form_for @ad do |f| %>
 
 
 	<% if @ad.errors.any? %>
@@ -20,27 +20,6 @@
 		<%= f.label :budget %><br>
 		<%= f.text_field :budget, class: 'form-control' %>
 	</p>
-
-	<% if @ad.creatives.any? %>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 style="display:inline" class="panel-title">Creatives</h3>
-			</div>
-			<div class="panel-body">
-				
-				<% f.fields_for :creatives do |ff| %>
-					<div>
-						<%= ff.label :bid %>
-						<%= ff.text_field :bid %>
-
-						<%= ff.label :adtext %>
-						<%= ff.text_area :adtext %>
-					</div>
-				<% end %>
-
-			</div>
-		</div>
-	<% end %>
 
 	<p>
 		<%= f.submit 'Update Ad', :class => 'btn btn-success' %>

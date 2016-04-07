@@ -12,7 +12,7 @@
 <h1>New Ad</h1>
 
 
-<%= form_for :ad, url: ads_path do |f| %>
+<%= form_for @ad do |f| %>
 	<% if @ad.errors.any? %>
 		<div id="error_explanation">
 			<h2>
@@ -39,26 +39,12 @@
 		<div class="panel-body">
 			<div id="creatives">
 
-			<div id="creative">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Creative #1</h3>
-					</div>
-					<div class="panel-body">
-						<% f.fields_for :creatives do |ff| %>
-							<div>
-								<%= ff.label :bid %>
-								<%= ff.text_field :bid %>
-
-								<%= ff.label :adtext %>
-								<%= ff.text_area :adtext %>
-							</div>
-						<% end %>
-					</div>
+				<% f.fields_for :creatives do |creative| %>
+					<%= render 'creative_fields', f: creative %>
+				<% end %>
+				<div class="links">
+					<%= link_to_add_association 'Add Creative', f, :creatives, :class => 'btn btn-success' %>
 				</div>
-			</div>
-
-				<button id="add_creative" class="btn btn-success">Add More Creatives</button>
 			</div>
 		</div>
 	</div>

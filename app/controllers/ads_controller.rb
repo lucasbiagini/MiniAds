@@ -40,6 +40,6 @@ class AdsController < ApplicationController
 
 	private
 		def ad_params
-			params.require(:ad).permit(:budget)
+			params.require(:ad).permit(:budget, creatives_attributes: [:id, :bid, :adtext, :_destroy])
 		end
 end
