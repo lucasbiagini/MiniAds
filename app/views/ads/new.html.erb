@@ -49,6 +49,23 @@
 		</div>
 	</div>
 
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 style="display:inline" class="panel-title">Targetings</h3>
+		</div>
+		<div class="panel-body">
+			<div id="targetings">
+
+				<% f.fields_for :targetings do |targeting| %>
+					<%= render 'creative_fields', f: targeting %>
+				<% end %>
+				<div class="links">
+					<%= link_to_add_association 'Add Targeting', f, :targetings, :class => 'btn btn-success' %>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<p>
 		<%= f.submit 'Add Ad', :class => 'btn btn-success'%>
