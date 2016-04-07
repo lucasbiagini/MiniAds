@@ -1,5 +1,5 @@
 class Ad < ActiveRecord::Base
-	has_many :creatives
+	has_many :creatives, dependent: :destroy
 
 	validates	:budget, presence: true
 	validates	:budget, :numericality => {:greater_than => 0}
