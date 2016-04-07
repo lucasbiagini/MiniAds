@@ -5,8 +5,10 @@ class Ad < ActiveRecord::Base
 	validates	:budget, presence: true
 	validates	:budget, :numericality => {:greater_than => 0}
 	validates_presence_of :creatives
+	validates_presence_of :targetings
 
 	accepts_nested_attributes_for :creatives, reject_if: proc {|attributes| attributes['bid'].blank? && attributes['adtext'].blank?}, allow_destroy: true
+	accepts_nested_attributes_for :targetings, reject_if: proc {|attributes| attributes['places'].blank? && attributes['gender'].blank?}, allow_destroy: true
 
 	def change
 		create_table :ads do |t|
