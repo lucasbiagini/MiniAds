@@ -1,14 +1,3 @@
-<script>
-
-	$(document).ready(function(){
-		$("#add_creative").on("click", function(){
-			
-		});
-	});
-
-</script>
-
-
 <h1>New Ad</h1>
 
 
@@ -57,7 +46,7 @@
 			<div id="targetings">
 
 				<% f.fields_for :targetings do |targeting| %>
-					<%= render 'creative_fields', f: targeting %>
+					<%= render 'targeting_fields', f: targeting %>
 				<% end %>
 				<div class="links">
 					<%= link_to_add_association 'Add Targeting', f, :targetings, :class => 'btn btn-success' %>
