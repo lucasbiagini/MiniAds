@@ -3,6 +3,7 @@ class Ad < ActiveRecord::Base
 
 	validates	:budget, presence: true
 	validates	:budget, :numericality => {:greater_than => 0}
+	validates_presence_of :creatives
 
 	accepts_nested_attributes_for :creatives, reject_if: proc {|attributes| attributes['bid'].blank? && attributes['adtext'].blank?}, allow_destroy: true
 
