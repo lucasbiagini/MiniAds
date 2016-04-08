@@ -23,14 +23,16 @@
 			if (id === "next")
 			{
 				if (curr > 1) curr = curr - 1;
+				
 
 			} else if (id == "prev")
 			{
 				var max = $("#pagination").children().length - 2;
 				if (curr < max) curr = curr + 1;
+				
 			} else
 			{
-				curr = id;
+				curr = parseInt(id);
 			}
 
 			targetPage = "#page-" + curr;
