@@ -12,15 +12,16 @@
 					<h3 style="display:inline" class="panel-title">Places</h3>
 				</div>
 				<div class="panel-body">
-					<div id="places">
+					
 
-						<% f.fields_for :places do |place| %>
-							<%= render 'places_fields', f: place %>
+
+						<%= f.fields_for :places do |place| %>
+							<%= render 'place_fields', f: place %>
 						<% end %>
 						<div class="links">
 							<%= link_to_add_association 'Add Place', f, :places, :class => 'btn btn-success' %>
 						</div>
-					</div>
+					
 				</div>
 			</div>
 

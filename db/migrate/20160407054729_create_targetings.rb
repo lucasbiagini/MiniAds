@@ -1,7 +1,6 @@
 class CreateTargetings < ActiveRecord::Migration
   def change
     create_table :targetings do |t|
-      t.string :places
       t.string :gender
       t.references :ad, index: true, foreign_key: true
 

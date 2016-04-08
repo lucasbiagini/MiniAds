@@ -1,18 +1,19 @@
 <div id="place">
-<div class="nested-fields">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Add New Place</h3>
-		</div>
-		<div class="panel-body">
-			
-		
-			<div class="field">
-				<%= f.label :name %>
-				<%= f.text_field :name, class: 'form-control'%>
+	<div class="nested-fields">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Add New Place</h3>
 			</div>
-			<%= link_to_remove_association "Remove Creative", f, :class => 'btn btn-danger'%>
+			<div class="panel-body">
+				
+			
+				<div class="field">
+					<%= f.label :name %>
+					<%= f.text_field :name, class: 'form-control'%>
+				</div>
+
+				<%= link_to_remove_association "Remove Place", f, :class => 'btn btn-danger'%>
+			</div>
 		</div>
-	</div>
 	</div>
 </div>

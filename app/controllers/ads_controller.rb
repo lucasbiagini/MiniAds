@@ -9,6 +9,7 @@ class AdsController < ApplicationController
 	end
 
 	def new
+
 		@ad = Ad.new
 
 	end
@@ -41,6 +42,6 @@ class AdsController < ApplicationController
 
 	private
 		def ad_params
-			params.require(:ad).permit(:budget, creatives_attributes: [:id, :bid, :adtext, :_destroy], targetings_attributes: [:id, :gender, :_destroy, places_attributes: [:name]])
+			params.require(:ad).permit(:budget, creatives_attributes: [:id, :bid, :adtext, :_destroy], targetings_attributes: [:id, :gender, :_destroy, places_attributes: [:id, :name]])
 		end
 end

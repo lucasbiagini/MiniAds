@@ -33,6 +33,15 @@
 	</p>
 
 	<p>
+		<%= f.fields_for :targetings do |targeting| %>
+			<%= render 'targeting_fields', f: targeting %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Targeting', f, :targetings, :class => 'btn btn-success' %>
+		</div>
+	</p>
+
+	<p>
 		<%= f.submit 'Update Ad', :class => 'btn btn-success' %>
 	</p>
 
