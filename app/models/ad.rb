@@ -1,4 +1,6 @@
 class Ad < ActiveRecord::Base
+	
+
 	has_many :creatives, dependent: :destroy
 	has_many :targetings, dependent: :destroy
 
@@ -8,7 +10,7 @@ class Ad < ActiveRecord::Base
 	validates_presence_of :targetings
 
 	accepts_nested_attributes_for :creatives, reject_if: proc {|attributes| attributes['bid'].blank? && attributes['adtext'].blank?}, allow_destroy: true
-	accepts_nested_attributes_for :targetings, reject_if: proc {|attributes| attributes['gender'].blank?}, allow_destroy: true
+	accepts_nested_attributes_for :targetings, reject_if: :all_blank, allow_destroy: true
 
 	def change
 		create_table :ads do |t|
