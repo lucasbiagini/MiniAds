@@ -1,15 +1,15 @@
 <script>
 
-	var ftocurrency = function(str) {
-		var aux = "";
-		for (var i = 0; i < str.len; i++)
-		{
+	/*
+		The code inside this script tag will be responsible for the pagination feature.	
+	*/
 
-		}
-	}
+	var curr = 1; // 'curr' keeps track of the current page.
 
-	var curr = 1;
 
+	/*
+		The following code is responsible for getting all groups of 10 ads each and adding a link to that group on the pagination navbar.
+	*/
 	$(document).ready(function(){
 		var pageList = document.getElementsByClassName("page");
 		for (var i = 1; i <= pageList.length; i++)
@@ -20,11 +20,14 @@
 			if (i==1) li.setAttribute("class",  "active");
 
 			li.innerHTML = '<a href="#page-'+i+'">'+i+'</a>';
-			//li.innerHTML = '<span>'+i+'</span>';
 			$("#next").before(li);
 		}
 	});
 
+
+	/*
+		The following code is responsible for managing when a user clicks a link on the pagination navbar by changing the 'curr' variable to the specific page or 'curr++' if user hits "next" link or 'curr--' if user hits "prev" link.
+	*/
 	$(document).ready(function(){
 		$("li").on("click", function(){
 			var targetPage = "#page-" + curr;
@@ -64,12 +67,22 @@
 <%= link_to 'Create new Ad', new_ad_path, class: 'btn btn-primary' %><br>
 </p>
 
+<!-- 
+	The following Ruby variables are responsible to hold values for the algorithm that fetches all the Ads and puts them into groups of 10.
+
+	Each 10 group of Ads is in a div with class="page-{page id here}".
+-->
+
 <% adIndex = 0 %>
 <% openDiv = false %>
 <% closeDiv = false %>
 <% adCount = 1 %>
 
 <% @ads.each_with_index do |ad, index| %>
+
+<!--
+	Part of the grouping algorithm that decides when to open a div for a group of Ads.
+-->
 
 	<% if adCount == 10 %>
 		<% adIndex = 1%>
@@ -163,6 +176,12 @@
 
 			</div>
 		</div>
+
+
+<!--
+	Part of the grouping algorithm that decides when to close the div for a group of Ads.
+-->
+
 
 	<% if closeDiv %>
 		</div>
