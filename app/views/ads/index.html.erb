@@ -144,7 +144,6 @@
 
 				<% if ad.targetings.any? %>
 					<% ad.targetings.each_with_index  do |targeting, index| %>
-						<% if targeting.gender.size >0 || targeting.places.any? %>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Targeting #<%= index+1 %></h3>
@@ -168,7 +167,6 @@
 
 							</div>
 						</div>
-						<% end %>
 					<% end %>
 				<% end %>
 				</div>
