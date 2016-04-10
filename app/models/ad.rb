@@ -1,8 +1,7 @@
 class Ad < ActiveRecord::Base
-	
 
-	has_many :creatives, dependent: :destroy
-	has_many :targetings, dependent: :destroy
+	has_many :creatives, inverse_of: :ad, dependent: :destroy
+	has_many :targetings, inverse_of: :ad, dependent: :destroy
 
 	validates :budget, presence: true
 	validates :budget, :numericality => {:greater_than => 0}
