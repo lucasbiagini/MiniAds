@@ -1,19 +1,19 @@
 <div id="place">
 	<div class="nested-fields">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Add New Place</h3>
+		<div class="col-sm-12">
+			<div class="col-sm-12">
+				<%= f.label :name %>
 			</div>
-			<div class="panel-body">
-				
-			
+			<div class="col-sm-8">
 				<div class="field">
-					<%= f.label :name %>
+					
 					<%= f.text_field :name, class: 'form-control'%>
 				</div>
-
+			</div>
+			<div clas="col-sm-4">
 				<%= link_to_remove_association "Remove Place", f, :class => 'btn btn-danger'%>
 			</div>
+			<br>
 		</div>
 	</div>
 </div>

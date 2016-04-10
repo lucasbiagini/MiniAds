@@ -2,37 +2,37 @@
 <div class="nested-fields">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Add New Targeting</h3>
+			<h3 style="display:inline" class="panel-title">Targeting</h3>
+			<%= link_to_remove_association "Remove", f, :class => 'btn btn-danger btn-xs'%>
 		</div>
 		<div class="panel-body">
 			
-		
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 style="display:inline" class="panel-title">Places</h3>
-				</div>
-				<div class="panel-body">
+			<div class="field">
+				<%= f.label :gender %>
+				<%= f.text_field :gender, class: 'form-control'%><br>
+			</div>
+
+
+
+			
 					
 
 
 						<%= f.fields_for :places do |place| %>
 							<%= render 'place_fields', f: place %>
 						<% end %>
-						<div class="links">
-							<%= link_to_add_association 'Add Place', f, :places, :class => 'btn btn-success' %>
+						<div class="col-sm-12" style="margin-bottom:15px;">
+							<div class="links">
+								<%= link_to_add_association 'Add Place', f, :places, :class => 'btn btn-primary col-sm-4', :style => 'float:right'%>
+							</div>
 						</div>
 					
-				</div>
-			</div>
+				
 
 
 
 
-			<div class="field">
-				<%= f.label :gender %>
-				<%= f.text_field :gender, class: 'form-control'%><br>
-			</div>
-			<%= link_to_remove_association "Remove Targeting", f, :class => 'btn btn-danger'%>		
+			
 
 		</div>
 	</div>

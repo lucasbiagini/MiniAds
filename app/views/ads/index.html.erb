@@ -8,8 +8,12 @@
 		{
 			var li = document.createElement("li");
 			li.setAttribute("id", i);
+			
+			if (i==1) li.setAttribute("class",  "active");
+
 			li.innerHTML = '<a href="#page-'+i+'">'+i+'</a>';
-			$("#prev").before(li);
+			//li.innerHTML = '<span>'+i+'</span>';
+			$("#next").before(li);
 		}
 	});
 
@@ -17,17 +21,20 @@
 		$("li").on("click", function(){
 			var targetPage = "#page-" + curr;
 			$(targetPage).hide();
+			$("#"+curr).toggleClass("active");
 
 			var $li = $(this);
 			var id = $li.attr("id");
-			if (id === "next")
+			var max = $("#pagination").children().length - 2;
+			if (id === "prev")
 			{
 				if (curr > 1) curr = curr - 1;
 				
+				
 
-			} else if (id == "prev")
+			} else if (id == "next")
 			{
-				var max = $("#pagination").children().length - 2;
+				
 				if (curr < max) curr = curr + 1;
 				
 			} else
@@ -37,6 +44,8 @@
 
 			targetPage = "#page-" + curr;
 			$(targetPage).show();
+
+			$("#"+curr).toggleClass("active");
 		});
 	});
 </script>
@@ -44,25 +53,26 @@
 
 <h1>Ads</h1> 
 <p>
-<%= link_to 'Add new Ad', new_ad_path, class: 'btn btn-success' %><br>
+<%= link_to 'Add new Ad', new_ad_path, class: 'btn btn-primary' %><br>
 </p>
 
 <% adIndex = 0 %>
 <% openDiv = false %>
 <% closeDiv = false %>
+<% adCount = 1 %>
 
 <% @ads.each_with_index do |ad, index| %>
 
-	<% if ad.id == 10 %>
+	<% if adCount == 10 %>
 		<% adIndex = 1%>
 	<% else %>
-		<% adIndex = (ad.id/10)+1 %>
+		<% adIndex = (adCount/10)+1 %>
 	<% end %>
 
-	<% if ad.id % 10 == 1 %>
+	<% if adCount % 10 == 1 %>
 		<% openDiv = true %>
 	<% else %>
-		<% if ad.id % 10 == 0 %>
+		<% if adCount % 10 == 0 %>
 			<% closeDiv = true %>
 		<% end %>
 	<% end %>
@@ -79,61 +89,67 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Ad #<%=ad.id%></h3>
-				<span style=""><%= link_to 'Edit', edit_ad_path(ad), class: 'btn btn-info' %><span>
+				<%= link_to 'Edit', edit_ad_path(ad), class: 'btn btn-warning btn-xs' %>
+				<%= link_to 'Remove', ad_path(ad), method: :delete, class: 'btn btn-danger btn-xs' %>
+				<h4 style="display: inline">
+					Budget: <%= ad.budget %>
+				</h4>
 			</div>
 			<div class="panel-body">
-				<p>
-					Budget = <%= ad.budget %>
-				</p>
+				
 
+				<div class="col-sm-12 col-md-6">
 				<% if ad.creatives.any? %>
 					<% ad.creatives.each_with_index do |creative, index| %>
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Creative #<%= index+1 %></h3>
+								<h4 style="display:inline">Bid: <%= creative.bid %></h4>
 							</div>
 							<div class="panel-body">
-								<p>
-									Bid = <%= creative.bid %>, AdText = <%= creative.adtext %>
+								<h4 style="text-align: center">AdText</h4>
+								<p style="text-align: center">
+									<%= creative.adtext %>
 								</p>
 							</div>
 						</div>
 					<% end %>
 				<% end %>
+				</div>
+
+				<div class="col-sm-12 col-md-6">
 
 				<% if ad.targetings.any? %>
 					<% ad.targetings.each_with_index  do |targeting, index| %>
-
+						<% if targeting.gender.size >0 || targeting.places.any? %>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Targeting #<%= index+1 %></h3>
+								<% if targeting.gender.blank? %>
+									<h4 style="display: inline">No Gender</h4>
+									
+								<% else %>
+									<h4 style="display: inline"> Gender: <%= targeting.gender %></h4>
+								<% end %>
 							</div>
 							<div class="panel-body">
-								<p>
-									Gender = <%= targeting.gender %>
-								</p>
+								
 
 								<% if targeting.places.any? %>
+									<ul style="text-align: center;list-style-type: none"><h4>Places:</h4>
 									<% targeting.places.each_with_index do |place, i| %>
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h3 class="panel-title">Place #<%= i+1 %></h3>
-											</div>
-											<div class="panel-body">
-												<p>
-													Place = <%= place.name %>
-												</p>
-											</div>
-										</div>
+										<li><%= place.name %></li>
 									<% end %>
+									<ul>
 								<% end %>
 
 							</div>
 						</div>
-
+						<% end %>
 					<% end %>
 				<% end %>
+				</div>
 
 
 			</div>
@@ -144,24 +160,26 @@
 		<% closeDiv = false %>
 	<% end %>
 
-	<% if ad.id % 10 != 0 %>
+	<% if adCount % 10 != 0 %>
 		<% if index == @ads.size - 1%>
 			</div>
 		<% end %>
 	<% end %>
+
+	<% adCount = adCount + 1 %>
 
 <% end %>
 
 
 <nav style="text-align: center">
   <ul id="pagination" class="pagination">
-    <li id="next">
+    <li id="prev">
       <a href="#page-1" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
 
-    <li id="prev">
+    <li id="next">
       <a href="#page-2" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>

@@ -15,51 +15,51 @@
 		</div>
 	<% end %>
 
-	<p>
-		<%= f.label :budget %><br>
-		<%= f.text_field :budget, class: 'form-control'%>
-	</p>
+	<div class="col-sm-12">
+		<p>
+			<%= f.label :budget %><br>
+			<%= f.text_field :budget, class: 'form-control'%>
+		</p>
+	</div>
 
-
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 style="display:inline" class="panel-title">Creatives</h3>
-		</div>
-		<div class="panel-body">
-			<div id="creatives">
+	<div class="col-sm-12 col-md-6">
+		<h2 style="text-align:center">Creatives</h2>
 
 				<% f.fields_for :creatives do |creative| %>
 					<%= render 'creative_fields', f: creative %>
 				<% end %>
-				<div class="links">
-					<%= link_to_add_association 'Add Creative', f, :creatives, :class => 'btn btn-success' %>
+				<div class="col-sm-12">
+					<div class="links">
+						<%= link_to_add_association 'Add Creative', f, :creatives, :class => 'btn btn-primary',:style => 'width:100%'%>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 style="display:inline" class="panel-title">Targetings</h3>
-		</div>
-		<div class="panel-body">
+	<div class="col-sm-12 col-md-6">
+		<h2 style="text-align:center">Targetings</h2>
 			<div id="targetings">
 
 				<% f.fields_for :targetings do |targeting| %>
 					<%= render 'targeting_fields', f: targeting %>
 				<% end %>
-				<div class="links">
-					<%= link_to_add_association 'Add Targeting', f, :targetings, :class => 'btn btn-success' %>
+				<div class="col-sm-12">
+					<div class="links">
+						<%= link_to_add_association 'Add Targeting', f, :targetings, :class => 'btn btn-primary', :style => 'width:100%' %>
+					</div>
 				</div>
 			</div>
 		</div>
+	
+
+	<div style="margin:15px 0px 5px" class="col-sm-12">
+		<p>
+			<%= f.submit 'Add Ad', :class => 'btn btn-success', :style => 'width:100%'%>
+		</p>
 	</div>
-
-
-	<p>
-		<%= f.submit 'Add Ad', :class => 'btn btn-success'%>
-	</p>
 
 <% end %>
 
-<%= link_to 'Cancel', ads_path, class: 'btn btn-danger' %>
+<div class="col-sm-12">
+	<%= link_to 'Cancel', ads_path, class: 'btn btn-danger', style: 'width:100%'%>
+</div>
